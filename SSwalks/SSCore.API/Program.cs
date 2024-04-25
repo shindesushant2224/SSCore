@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SSCore.API.Data;
 using SSCore.API.Mappings;
 using SSCore.API.Repositories.RegionRepository;
+using SSCore.API.Repositories.WalksRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<SSWalksDbContext>(options =>
 });
 
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+builder.Services.AddScoped<IWalksRepository, WalksRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapping));
 
 var app = builder.Build();
