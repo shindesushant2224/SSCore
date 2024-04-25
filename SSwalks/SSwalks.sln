@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCore.API", "SSCore.API\SSCore.API.csproj", "{191F5255-CE0D-4EB8-AAC0-C48EB373152E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{191F5255-CE0D-4EB8-AAC0-C48EB373152E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191F5255-CE0D-4EB8-AAC0-C48EB373152E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191F5255-CE0D-4EB8-AAC0-C48EB373152E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191F5255-CE0D-4EB8-AAC0-C48EB373152E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B283C79-5033-4AD3-8884-275FFABDBA1A}
+	EndGlobalSection
+EndGlobal
