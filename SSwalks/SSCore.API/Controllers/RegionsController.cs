@@ -47,7 +47,7 @@ namespace SSCore.API.Controllers
 
         //Create Region
         [HttpPost]
-        [ValidateModel]
+        //[ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto regionRequestDto)
         {
             //if (!ValidateAddRequest(regionRequestDto)) {
