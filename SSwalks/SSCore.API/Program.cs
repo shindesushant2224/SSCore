@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SSCore.API.Data;
 using SSCore.API.Mappings;
+using SSCore.API.Repositories.DifficultyRepository;
 using SSCore.API.Repositories.RegionRepository;
 using SSCore.API.Repositories.WalksRepository;
 
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<SSWalksDbContext>(options =>
 
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IWalksRepository, WalksRepository>();
+builder.Services.AddScoped<IWalkDifficultyRepository, WalkDifficultyRepository>();
+
 builder.Services.AddAutoMapper(typeof(AutoMapping));
 
 var app = builder.Build();
