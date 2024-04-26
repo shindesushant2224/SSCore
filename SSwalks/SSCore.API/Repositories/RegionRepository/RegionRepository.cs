@@ -14,7 +14,7 @@ namespace SSCore.API.Repositories.RegionRepository
         }
         public async Task<IEnumerable<Region>> GetRegions()
         {
-            return await dbContext.Regions.Include("Walks").ToListAsync();
+            return await dbContext.Regions.ToListAsync();
         }
 
         public async Task<Region?> GetRegion(Guid Id)

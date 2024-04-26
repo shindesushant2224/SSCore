@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SSCore.API.CustomActionFilters;
 using SSCore.API.Data;
 using SSCore.API.Models.Domain;
 using SSCore.API.Models.DTO;
@@ -46,8 +47,16 @@ namespace SSCore.API.Controllers
 
         //Create Region
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto regionRequestDto)
         {
+            //if (!ValidateAddRequest(regionRequestDto)) {
+            //    return BadRequest();
+            //}
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
             var regionModel = mapper.Map<Region>(regionRequestDto);
 
             regionModel = await regionRepository.CreateAsync(regionModel);
@@ -60,8 +69,17 @@ namespace SSCore.API.Controllers
         //Update Region
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id,[FromBody] UpdateRegionRequestDto updateRegionRequest)
         {
+            //if (!ValidateUpdateRequest(updateRegionRequest))
+            //{
+            //    return BadRequest();
+            //}
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
             var regionModel = mapper.Map<Region>(updateRegionRequest);
 
             regionModel = await regionRepository.UpdateAsync(id,regionModel);
@@ -87,6 +105,42 @@ namespace SSCore.API.Controllers
             var deletedRegionDto = mapper.Map<RegionDto>(regionModel);
 
             return Ok(deletedRegionDto);
+        }
+        private bool ValidateAddRequest(AddRegionRequestDto regionRequestDto)
+        {
+            if(string.IsNullOrWhiteSpace(regionRequestDto.Name)) {
+                ModelState.AddModelError(nameof(regionRequestDto.Name), "Name must be required");
+            }
+            if(string.IsNullOrWhiteSpace(regionRequestDto.Code)) {
+                ModelState.AddModelError(nameof(regionRequestDto.Code), "Code must be required");
+            }
+            if (regionRequestDto.Area <= 0)
+            {
+                ModelState.AddModelError(nameof(regionRequestDto.Code), "Area must be positive and greater than 0");
+            }
+            if (ModelState.ErrorCount > 0)
+                return false;
+
+            return true;
+        }
+        private bool ValidateUpdateRequest(UpdateRegionRequestDto regionRequestDto)
+        {
+            if (string.IsNullOrWhiteSpace(regionRequestDto.Name))
+            {
+                ModelState.AddModelError(nameof(regionRequestDto.Name), "Name must be required");
+            }
+            if (string.IsNullOrWhiteSpace(regionRequestDto.Code))
+            {
+                ModelState.AddModelError(nameof(regionRequestDto.Code), "Code must be required");
+            }
+            if (regionRequestDto.Area <= 0)
+            {
+                ModelState.AddModelError(nameof(regionRequestDto.Code), "Area must be positive and greater than 0");
+            }
+            if (ModelState.ErrorCount > 0)
+                return false;
+
+            return true;
         }
     }
 }

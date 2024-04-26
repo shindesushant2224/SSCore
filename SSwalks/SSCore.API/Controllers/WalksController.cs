@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SSCore.API.CustomActionFilters;
 using SSCore.API.Models.Domain;
 using SSCore.API.Models.DTO;
 using SSCore.API.Repositories.WalksRepository;
@@ -43,6 +44,7 @@ namespace SSCore.API.Controllers
             return Ok(walkDto);
         }
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddWalksDto addWalksDto)
         {
             var WalkModel = mapper.Map<Walk>(addWalksDto);
@@ -58,6 +60,7 @@ namespace SSCore.API.Controllers
         }
         [HttpPut]
         [Route("{Id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid Id, UpdateWalksDto updateWalksDto)
         {
             var walkModel = mapper.Map<Walk>(updateWalksDto);

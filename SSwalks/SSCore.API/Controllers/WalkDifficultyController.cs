@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SSCore.API.CustomActionFilters;
 using SSCore.API.Models.Domain;
 using SSCore.API.Models.DTO;
 using SSCore.API.Repositories.DifficultyRepository;
@@ -38,7 +39,8 @@ namespace SSCore.API.Controllers
             return Ok(walkDifficultyDto);
         }
 
-        [HttpPost]       
+        [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddWalkDifficultyDto addWalkDifficulty)
         {
             var walkDifficultyModel = mapper.Map<WalkDifficulty>(addWalkDifficulty);
@@ -54,6 +56,7 @@ namespace SSCore.API.Controllers
         }
         [HttpPut]
         [Route("{Id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid Id, [FromBody] UpdateWalkDifficultyDto updateWalkDifficulty)
         {
             var walkDifficultyModel = mapper.Map<WalkDifficulty>(updateWalkDifficulty);
